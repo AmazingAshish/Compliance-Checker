@@ -1,0 +1,13 @@
+POLICY REF: KYC-115 - Account and Transaction Reference Format Standards
+
+Standard account numbers issued by retail and commercial banking systems
+follow an 8-to-16 digit numeric format, occasionally grouped with spaces or
+hyphens (e.g. 4400 1122 3399 0071). Transaction reference numbers follow a
+distinct alphanumeric format prefixed with a two-to-four letter transaction
+type code (e.g. TXN-88213394, INTL4471002). A document that contains a
+number resembling one format where the other was expected should not be
+auto-failed purely on format mismatch; cross-department documents legitimately
+mix identifier types (e.g. a wire confirmation may cite both the sender's
+account number and a SWIFT-style transaction reference). Reviewers should
+check whether at least one recognizable identifier of either type is present
+before concluding a document is non-compliant on identification grounds.

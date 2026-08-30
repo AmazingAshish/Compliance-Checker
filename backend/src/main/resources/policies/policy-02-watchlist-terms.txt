@@ -1,0 +1,15 @@
+POLICY REF: ECC-220 - Economic Crime Compliance: Watchlist and High-Risk Terminology
+
+Documents containing terminology historically associated with layering and
+concealment in economic crime typologies - including but not limited to
+"shell company", "unregistered offshore trust", "anonymous bearer share",
+"sanctioned jurisdiction", and "straw director" - must not be auto-approved
+regardless of surrounding context. The presence of such a term is not
+automatically disqualifying: legitimate legal, audit, and compliance
+documents frequently discuss these concepts in an explanatory or advisory
+capacity (e.g. a due-diligence memo warning a client away from a shell
+company structure). Escalation to a human or LLM reviewer is required to
+distinguish between (a) a document describing or warning against a
+prohibited structure, and (b) a document that appears to facilitate,
+recommend, or represent such a structure as compliant. The reviewer should
+quote the surrounding sentence(s) in their reasoning.

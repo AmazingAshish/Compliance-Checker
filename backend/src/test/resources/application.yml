@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  kafka:
+    consumer:
+      group-id: compliance-checker
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.compliance.checker.common.event"
+        spring.json.use.type.headers: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true
+    listener:
+      ack-mode: RECORD
+  ai:
+    google:
+      genai:
+        api-key: test-key-not-real
+        embedding:
+          api-key: test-key-not-real
+
+compliance:
+  confidence-threshold: 0.75
+  banned-terms:
+    - shell company
+    - unregistered offshore trust
+    - anonymous bearer share
+    - sanctioned jurisdiction
+    - straw director
+  kafka:
+    topics:
+      document-uploaded: document-uploaded
+      document-extracted: document-extracted
+      needs-llm-review: needs-llm-review
+      document-finalized: document-finalized
+  storage:
+    upload-dir: ./build/test-uploads
+  ocr:
+    tessdata-path: ./tessdata
+    language: eng

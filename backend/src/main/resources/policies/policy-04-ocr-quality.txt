@@ -1,0 +1,12 @@
+POLICY REF: OPS-410 - OCR and Scan Quality Escalation Guidance
+
+Automated extraction of scanned or photographed documents via OCR is
+inherently lossy. When a document's extracted text is unusually short (fewer
+than ~50 characters), contains a high density of non-alphanumeric noise, or
+fails required-field checks in a pattern consistent with a garbled scan
+(e.g. fragments of a date or reference number that don't quite parse), this
+should be treated as an extraction-quality issue in the first instance rather
+than a compliance failure. Reviewers should explicitly consider whether
+re-scanning at higher resolution or in better lighting would likely resolve
+the ambiguity, and should say so in their reasoning when recommending
+UNCERTAIN over an outright FAIL.
