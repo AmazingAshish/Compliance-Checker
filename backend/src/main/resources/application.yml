@@ -1,0 +1,94 @@
+spring:
+  application:
+    name: compliance-checker
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/compliance_checker}
+    username: ${SPRING_DATASOURCE_USERNAME:compliance}
+    password: ${SPRING_DATASOURCE_PASSWORD:compliance}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    open-in-view: false
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: compliance-checker
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.compliance.checker.common.event"
+        spring.json.use.type.headers: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true
+    listener:
+      ack-mode: RECORD
+
+  ai:
+    google:
+      genai:
+        # "unset" is a deliberate non-empty placeholder, not a real fallback key: Spring
+        # AI's Google GenAI auto-configuration only checks the api-key is non-blank when
+        # building its client bean at startup - it does not call the network - so an empty
+        # value here would make the whole app fail to boot without GEMINI_API_KEY. "unset"
+        # satisfies that local check and lets the app start; a genuinely missing/invalid
+        # key then only fails the actual API call, which NeedsLlmReviewConsumer already
+        # catches per-document (LLM_REVIEW_FAILED) instead of crashing the app.
+        api-key: ${GEMINI_API_KEY:unset}
+        chat:
+          options:
+            model: gemini-3.6-flash
+            temperature: 0.1
+        embedding:
+          api-key: ${GEMINI_API_KEY:unset}
+          text:
+            options:
+              model: gemini-embedding-001
+
+server:
+  port: ${SERVER_PORT:8080}
+
+# --- Application-specific configuration ---
+compliance:
+  # Threshold every rule's confidence must meet (and no rule may be UNCERTAIN)
+  # for the rule-engine verdict to be treated as final without LLM escalation.
+  confidence-threshold: 0.75
+  banned-terms:
+    - shell company
+    - unregistered offshore trust
+    - anonymous bearer share
+    - sanctioned jurisdiction
+    - straw director
+  kafka:
+    topics:
+      document-uploaded: document-uploaded
+      document-extracted: document-extracted
+      needs-llm-review: needs-llm-review
+      document-finalized: document-finalized
+  storage:
+    upload-dir: ${COMPLIANCE_UPLOAD_DIR:./uploads}
+  ocr:
+    tessdata-path: ${TESSDATA_PREFIX:./tessdata}
+    language: eng
+
+logging:
+  level:
+    com.compliance.checker: INFO

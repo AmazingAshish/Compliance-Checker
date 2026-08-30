@@ -1,0 +1,13 @@
+POLICY REF: KYC-101 - Customer Identification and Reference Numbering
+
+All customer-facing documents accepted for onboarding or transaction processing
+must contain a verifiable account or reference number matching the format
+issued by the originating business unit (alphanumeric, 6-14 characters,
+optionally hyphenated, e.g. ACC-2024-00931 or REF7788321A). A document lacking
+any discernible reference or account identifier cannot be auto-approved and
+must be routed for manual or LLM-assisted review to determine whether the
+omission is a scanning/OCR artifact or a genuine documentation gap. Reviewers
+should note that low-quality scans of otherwise valid documents are the most
+common cause of missing-field false positives, and this should be weighed
+against the possibility of an intentionally incomplete or fraudulent
+submission.

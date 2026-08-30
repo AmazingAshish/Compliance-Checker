@@ -1,0 +1,12 @@
+POLICY REF: DOC-330 - Document Currency and Expiry Handling
+
+Any identification, certification, or attestation document must carry a date
+that is both parseable and not expired at the time of review. Documents dated
+more than 18 months in the past for recurring attestations (e.g. annual
+compliance certifications) should be treated as stale and routed for review
+rather than an automatic FAIL, since renewal paperwork is frequently
+back-dated to a prior certification period during legitimate administrative
+lag. A document with no discernible date at all is a stronger signal of
+non-compliance than a document with a stale-but-present date, and should be
+weighted accordingly. When in doubt, the reviewer should recommend requesting
+a reissued document rather than issuing a hard rejection.

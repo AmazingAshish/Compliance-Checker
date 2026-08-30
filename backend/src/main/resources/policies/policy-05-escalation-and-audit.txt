@@ -1,0 +1,15 @@
+POLICY REF: GOV-500 - Escalation, LLM-Assisted Review, and Audit Requirements
+
+Where the deterministic rule engine returns an UNCERTAIN verdict on any
+individual check, or where aggregate confidence across all checks falls
+below the configured threshold, the document must be escalated for
+LLM-assisted review rather than defaulted to PASS or FAIL. The LLM reviewer
+must (1) explicitly state which rule(s) triggered escalation, (2) ground its
+reasoning in the retrieved policy text rather than general knowledge, (3)
+produce a plain-language explanation suitable for a non-technical compliance
+officer, and (4) record a final PASS/FAIL/UNCERTAIN verdict - UNCERTAIN
+should be reserved for cases where even a human reviewer would need
+additional source documents to decide. Every review, whether automated or
+LLM-assisted, must be linked to an audit trail entry recording the inputs
+considered and the verdict rendered, to satisfy downstream regulatory
+examination.
