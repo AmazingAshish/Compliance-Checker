@@ -1,4 +1,4 @@
-﻿# Compliance Checker
+# Compliance Checker
 
 An AI-assisted document compliance checker: upload a PDF/image, extract its
 text via OCR, run it through a deterministic rule engine, and escalate only
@@ -326,5 +326,3 @@ code - "I wrote it" and "I made it work" are different claims.
   pgvector for a persistent/larger corpus is a one-bean change.
 - **Kafka topic partition count / consumer group scaling** hasn't been load
   tested; the manifests here are demo-sized, not production-sized.
- 
- 
