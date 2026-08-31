@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface AuditLogEntryRepository extends JpaRepository<AuditLogEntry, UUID> {
     List<AuditLogEntry> findByDocumentIdOrderByTimestampAsc(UUID documentId);
+    void deleteByDocumentId(UUID documentId);
 }

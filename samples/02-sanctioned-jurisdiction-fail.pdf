@@ -1,0 +1,26 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 300] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 254 >>
+stream
+BT /F1 11 Tf 20 200 Td (Investment proposal. Ref No: ACC-2024-00931. Account number 5511223344556677. Dated 2026-05-20. We recommend routing client funds through a shell company registered in a sanctioned jurisdiction to reduce reporting overhead.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+0
+%%EOF

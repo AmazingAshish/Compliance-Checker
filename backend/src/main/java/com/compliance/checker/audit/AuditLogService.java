@@ -23,4 +23,8 @@ public class AuditLogService {
     public List<AuditLogEntry> history(UUID documentId) {
         return repository.findByDocumentIdOrderByTimestampAsc(documentId);
     }
+
+    public void deleteHistory(UUID documentId) {
+        repository.deleteByDocumentId(documentId);
+    }
 }

@@ -29,3 +29,7 @@ export function uploadDocument(file) {
     body: formData,
   }).then(handle);
 }
+
+export function deleteDocument(id) {
+  return fetch(`${API_BASE}/documents/${id}`, { method: "DELETE" }).then(handle);
+}

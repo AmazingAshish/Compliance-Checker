@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface RuleResultRepository extends JpaRepository<RuleResult, UUID> {
     List<RuleResult> findByDocumentId(UUID documentId);
     boolean existsByDocumentId(UUID documentId);
+    void deleteByDocumentId(UUID documentId);
 }
