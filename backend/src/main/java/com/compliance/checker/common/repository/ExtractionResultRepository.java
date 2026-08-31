@@ -11,4 +11,5 @@ public interface ExtractionResultRepository extends JpaRepository<ExtractionResu
     List<ExtractionResult> findByDocumentId(UUID documentId);
     Optional<ExtractionResult> findFirstByDocumentIdOrderByExtractedAtDesc(UUID documentId);
     boolean existsByDocumentId(UUID documentId);
+    void deleteByDocumentId(UUID documentId);
 }

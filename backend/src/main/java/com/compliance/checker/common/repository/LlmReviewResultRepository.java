@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface LlmReviewResultRepository extends JpaRepository<LlmReviewResult, UUID> {
     List<LlmReviewResult> findByDocumentId(UUID documentId);
     boolean existsByDocumentId(UUID documentId);
+    void deleteByDocumentId(UUID documentId);
 }
